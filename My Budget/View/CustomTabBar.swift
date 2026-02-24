@@ -40,7 +40,7 @@ struct CustomTabBar: View {
             case .home:
                 HomeView()
             case .laboratory:
-                Text("Hello")
+                LaboratoryView()
             }
         }
         
