@@ -25,7 +25,8 @@ class FoodItem {
 //    Картинка
     @Attribute(.externalStorage) var imageData: Data?
     
-    init(name: String,
+    init(
+         name: String,
          details: String,
          price: Int,
          ingridients: [String],
