@@ -8,12 +8,14 @@
 import SwiftUI
 
 enum Tab: String, CaseIterable {
-    case home, laboratory
+    case home, create, laboratory
     
     var title: String  {
         switch self {
         case .home:
             return "Главная"
+        case .create:
+            return " "
         case .laboratory:
             return "Лаборатория"
         }
@@ -23,6 +25,8 @@ enum Tab: String, CaseIterable {
         switch self {
         case .home:
             return "house"
+        case .create:
+            return "plus"
         case .laboratory:
             return "flask"
         }
@@ -31,7 +35,6 @@ enum Tab: String, CaseIterable {
 
 struct CustomTabBar: View {
     @State private var selectedTab: Tab = .home
-    @State private var check = true
     
     var body: some View {
         
@@ -39,34 +42,42 @@ struct CustomTabBar: View {
             switch selectedTab {
             case .home:
                 HomeView()
+            case .create:
+                Text("Create")
             case .laboratory:
                 LaboratoryView()
             }
         }
         
-        Text(check ? "Hello" : "Bye")
         Spacer()
         HStack {
             ForEach(Tab.allCases, id: \.self) { tab in
                 Spacer()
                 Button {
                     selectedTab = tab
-                    check.toggle()
                 } label: {
                     VStack {
-                        Image(systemName: tab.icon)
-                        Text(tab.title)
+                        if tab == Tab.allCases[1] {
+                            Image(systemName: tab.icon)
+                                .frame(width: 50, height: 50)
+                                .background(.white)
+                                .cornerRadius(30)
+                                .shadow(radius: 5)
+                        } else {
+                            Image(systemName: tab.icon)
+                            Text(tab.title)
+                        }
                     }
                     .frame(maxWidth: .infinity)
                     .contentShape(Rectangle())
                 }
                 Spacer()
                 
-                if tab != Tab.allCases.last {
-                    Divider()
-                        .frame(maxHeight: 20)
-                        .background(.black)
-                }
+//                if tab != Tab.allCases.last {
+//                    Divider()
+//                        .frame(maxHeight: 20)
+//                        .background(.black)
+//                }
             }
         }
         .frame(maxWidth: .infinity)

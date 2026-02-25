@@ -10,6 +10,8 @@ import SwiftUI
 struct HomeView: View {
     var body: some View {
         VStack {
+            
+//            MARK: окно с деньгами
             HStack {
                 Text("money")
                     .font(.largeTitle)
@@ -22,6 +24,7 @@ struct HomeView: View {
             
             Spacer()
             
+//            MARK: тело программы где будет расчет
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 15) {
@@ -36,12 +39,12 @@ struct HomeView: View {
                             }
                             .background(.ultraThinMaterial)
                             .cornerRadius(20)
-                            .padding(9)
+                            .padding()
                             .shadow(radius: 5)
                         }
                     }
+                    Divider()
                 }
-                .padding()
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: 600)
