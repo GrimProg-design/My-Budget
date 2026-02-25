@@ -43,7 +43,7 @@ struct CustomTabBar: View {
             case .home:
                 HomeView()
             case .create:
-                Text("Create")
+                CreateView()
             case .laboratory:
                 LaboratoryView()
             }
@@ -73,6 +73,7 @@ struct CustomTabBar: View {
                 }
                 Spacer()
                 
+//                На данный момент убрал, но это визуальное разделение нижнего раздела
 //                if tab != Tab.allCases.last {
 //                    Divider()
 //                        .frame(maxHeight: 20)
