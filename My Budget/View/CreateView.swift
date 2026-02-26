@@ -77,7 +77,24 @@ struct CreateView: View {
                     }
                 }
             }
+            
+            Section {
+                HStack {
+                    Spacer()
+                    
+                    Button {
+                        saveFood()
+                    } label: {
+                        Label("Сохранить блюдо", systemImage: "square.and.arrow.down")
+                    }
+                    .foregroundStyle(.black)
+                    
+                    Spacer()
+                }
+                .listRowBackground(Color.green)
+            }
         }
+        .padding(.bottom, 70)
     }
     
     func saveFood() {

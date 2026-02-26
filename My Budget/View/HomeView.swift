@@ -46,6 +46,8 @@ struct HomeView: View {
                     Divider()
                 }
                 Spacer()
+                
+                HomeBodyView()
             }
             .frame(maxWidth: .infinity, maxHeight: 600)
             .background(.white)
