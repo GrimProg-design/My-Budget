@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftData
+import SwiftUI
 
 @Model
 class FoodItem {
@@ -60,7 +61,15 @@ class FoodItem {
 }
 
 enum FoodStatus: String {
-    case superfood = "Зеленый"
-    case neutral = "Желтый"
-    case junk = "Красный"
+    case superfood = "Отличная"
+    case neutral = "Средняя"
+    case junk = "Вредная"
+    
+    var color: Color {
+        switch self {
+        case .superfood: return .green
+        case .neutral: return .yellow
+        case .junk: return .red
+        }
+    }
 }
