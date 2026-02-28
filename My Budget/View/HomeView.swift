@@ -54,6 +54,8 @@ struct HomeView: View {
                 }
                 Spacer()
                 
+                
+//                MARK: Тело приложения
                 switch currentDay {
                 case "monday":
                     Text("monday")
