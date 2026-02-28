@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LaboratoryView: View {
     var body: some View {
+        TestingView()
         Text("Hello, this is laboratory view")
     }
 }

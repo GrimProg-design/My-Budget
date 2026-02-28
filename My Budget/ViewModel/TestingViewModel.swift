@@ -6,3 +6,17 @@
 //
 
 import Foundation
+import Combine
+
+class TestingViewModel: ObservableObject {
+    @Published private var dailyFood = DailyFoodModel()
+    let allFoods: [FoodItem]
+    
+    init(allFoods: [FoodItem]) {
+        self.allFoods = allFoods
+    }
+    
+    func dailyFoodEngine() {
+        
+    }
+}

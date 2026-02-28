@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State var foodThisWeek: [FoodItem] = []
+    @State private var currentDay = ""
+    
     var body: some View {
         VStack {
             
@@ -30,7 +33,7 @@ struct HomeView: View {
                     HStack(spacing: 15) {
                         ForEach(Weekdays.allCases, id: \.self) {day in
                             Button {
-                                
+                                currentDay = day.rawValue
                             } label: {
                                 Text(day.daysInWeek)
                                     .font(.title2)
@@ -43,11 +46,41 @@ struct HomeView: View {
                             .shadow(radius: 5)
                         }
                     }
+                    
                     Divider()
+                }
+                .onAppear {
+                    currentDay = Date().formatted(.dateTime.weekday(.wide)).lowercased()
                 }
                 Spacer()
                 
-                HomeBodyView()
+                switch currentDay {
+                case "monday":
+                    Text("monday")
+                    HomeBodyView()
+                case "tuesday":
+                    Text("tuesday")
+                    HomeBodyView()
+                case "wednesday":
+                    Text("wednesday")
+                    HomeBodyView()
+                case "thursday":
+                    Text("thursday")
+                    HomeBodyView()
+                case "friday":
+                    Text("friday")
+                    HomeBodyView()
+                case "saturday":
+                    Text("saturday")
+                    HomeBodyView()
+                case "sunday":
+                    Text("sunday")
+                    HomeBodyView()
+                default:
+                    Text("No such day")
+                }
+                
+                
             }
             .frame(maxWidth: .infinity, maxHeight: 600)
             .background(.white)
