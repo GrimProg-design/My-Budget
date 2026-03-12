@@ -11,6 +11,7 @@ import SwiftUI
 
 @Model
 class FoodItem {
+    @Attribute(.unique) var id: UUID = UUID()
 //    Описание
     var name: String
     var details: String

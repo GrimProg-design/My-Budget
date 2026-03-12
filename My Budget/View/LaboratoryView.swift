@@ -6,11 +6,28 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct LaboratoryView: View {
+    @Environment(\.modelContext) private var modelContext
+    
     var body: some View {
-        TestingView()
         Text("Hello, this is laboratory view")
+        Button("delete db") {
+            deleteFunc()
+        }
+        
+    }
+    
+    func deleteFunc() {
+        let context = modelContext
+        do {
+            try context.delete(model: DayPlan.self)
+            
+            try context.save()
+        } catch {
+            print("Ошибка при удалении \(error)")
+        }
     }
 }
 

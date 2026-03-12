@@ -14,6 +14,6 @@ struct My_BudgetApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [FoodItem.self, WeeklyModel.self])
+        .modelContainer(for: [FoodItem.self, DayPlan.self])
     }
 }

@@ -9,14 +9,14 @@ import Foundation
 import SwiftData
 
 @Model
-class WeeklyModel {
+class DayPlan {
+    var date: Date
     var dayName: String
-    var budget: Double
-    var food: [FoodItem]
+    @Relationship(deleteRule: .nullify) var foods: [FoodItem]
     
-    init(dayName: String, budget: Double, food: [FoodItem] = []) {
+    init(dayName: String, foods: [FoodItem] = []) {
+        self.date = Date()
         self.dayName = dayName
-        self.budget = budget
-        self.food = food
+        self.foods = foods
     }
 }
