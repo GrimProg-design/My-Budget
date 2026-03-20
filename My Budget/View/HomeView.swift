@@ -16,6 +16,7 @@ struct HomeView: View {
     
     //    @State var foodThisWeek: [[FoodItem]] = Array(repeating: [], count: 7)
     @State private var currentDay = ""
+    @State private var choosenDay = ""
     @State var money = 160.0
     
     var body: some View {
@@ -47,7 +48,16 @@ struct HomeView: View {
                                     .padding(8)
                                     .foregroundStyle(.black)
                             }
-                            .background(.ultraThinMaterial)
+                            .background (
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .fill(.ultraThinMaterial)
+                                    
+                                    if currentDay == day.rawValue {
+                                        Color.blue.opacity(0.3)
+                                    }
+                                }
+                            )
                             .cornerRadius(20)
                             .padding()
                             .shadow(radius: 5)
@@ -72,10 +82,10 @@ struct HomeView: View {
                             generateWeeklyPlan()
                         }
                         .buttonStyle(.borderedProminent)
-                        
-                        Spacer()
                     }
                     .padding(.bottom, 70)
+                    
+                    Spacer()
                 }
                 
                 
