@@ -72,6 +72,8 @@ struct HomeView: View {
                             generateWeeklyPlan()
                         }
                         .buttonStyle(.borderedProminent)
+                        
+                        Spacer()
                     }
                     .padding(.bottom, 70)
                 }
