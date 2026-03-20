@@ -22,9 +22,18 @@ struct LaboratoryView: View {
     func deleteFunc() {
         let context = modelContext
         do {
-            try context.delete(model: DayPlan.self)
-            
+            // Delete all DayPlan
+            let plans = try context.fetch(FetchDescriptor<DayPlan>())
+            for plan in plans {
+                context.delete(plan)
+            }
+            // Delete all FoodItem
+            let foods = try context.fetch(FetchDescriptor<FoodItem>())
+            for food in foods {
+                context.delete(food)
+            }
             try context.save()
+            print("База очищена")
         } catch {
             print("Ошибка при удалении \(error)")
         }

@@ -27,6 +27,9 @@ struct CreateView: View {
     @State private var selectedItem: PhotosPickerItem? = nil
     @State private var imageData: Data? = nil
     
+//    Дизайнерские переменные
+    @State private var wasPressed = false
+    
     var body: some View {
         Form {
             Section(header: Text("Главное о блюде")) {
@@ -84,6 +87,7 @@ struct CreateView: View {
                     
                     Button {
                         saveFood()
+                        wasPressed = true 
                     } label: {
                         Label("Сохранить блюдо", systemImage: "square.and.arrow.down")
                     }
@@ -91,7 +95,7 @@ struct CreateView: View {
                     
                     Spacer()
                 }
-                .listRowBackground(Color.green)
+                .listRowBackground(wasPressed ? Color.gray : Color.green)
             }
         }
         .padding(.bottom, 70)
