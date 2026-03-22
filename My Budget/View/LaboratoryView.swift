@@ -24,14 +24,24 @@ struct LaboratoryView: View {
                         budget.money = value
                     }
                 }))
-                Button("Сохранить бюджет") {
-                    saveBudget()
+                HStack {
+                    Spacer()
+                    Button("Сохранить бюджет") {
+                        saveBudget()
+                    }
+                    .foregroundStyle(.green)
+                    Spacer()
                 }
             }
             
             Section {
-                Button("delete db") {
-                    deleteFunc()
+                HStack {
+                    Spacer()
+                    Button("delete db") {
+                        deleteFunc()
+                    }
+                    .foregroundStyle(.red)
+                    Spacer()
                 }
             }
         }
@@ -52,6 +62,7 @@ struct LaboratoryView: View {
                 context.delete(food)
             }
             
+//            Delete all MoneyItem
             let money = try context.fetch(FetchDescriptor<MoneyItem>())
             for moneys in money {
                 context.delete(moneys)
@@ -66,8 +77,13 @@ struct LaboratoryView: View {
     func saveBudget() {
         if let existing = moneyItem.first {
             existing.money = budget.money
+//            Бро это лютый кастыль его лучше не трогать (мне просто лень переписывать все заново), но отвечает оно за то чтобы бюджет был одинаковым и на главном эране и в меню лаборатории
+            budget.money = existing.money
         } else {
             let money = MoneyItem(money: budget.money)
+//            Это тот же самый лютый костыль описанный выше
+            budget.money = money.money
+//            ______________________
             modelContext.insert(money)
         }
     }
