@@ -10,10 +10,11 @@ import SwiftData
 
 @main
 struct My_BudgetApp: App {
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: [FoodItem.self, DayPlan.self])
+        .modelContainer(for: [FoodItem.self, DayPlan.self, MoneyItem.self])
     }
 }

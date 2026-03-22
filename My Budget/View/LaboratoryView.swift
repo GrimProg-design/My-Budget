@@ -7,14 +7,33 @@
 
 import SwiftUI
 import SwiftData
+import Combine
 
 struct LaboratoryView: View {
     @Environment(\.modelContext) private var modelContext
+    @EnvironmentObject var budget: Budget
+    @Query var moneyItem: [MoneyItem]
     
     var body: some View {
-        Text("Hello, this is laboratory view")
-        Button("delete db") {
-            deleteFunc()
+        Form {
+            Section {
+                TextField("Введите сумму", text: Binding(
+                    get: { String(budget.money) },
+                    set: { newValue in
+                    if let value = Int(newValue) {
+                        budget.money = value
+                    }
+                }))
+                Button("Сохранить бюджет") {
+                    saveBudget()
+                }
+            }
+            
+            Section {
+                Button("delete db") {
+                    deleteFunc()
+                }
+            }
         }
         
     }
@@ -32,10 +51,24 @@ struct LaboratoryView: View {
             for food in foods {
                 context.delete(food)
             }
+            
+            let money = try context.fetch(FetchDescriptor<MoneyItem>())
+            for moneys in money {
+                context.delete(moneys)
+            }
             try context.save()
             print("База очищена")
         } catch {
             print("Ошибка при удалении \(error)")
+        }
+    }
+    
+    func saveBudget() {
+        if let existing = moneyItem.first {
+            existing.money = budget.money
+        } else {
+            let money = MoneyItem(money: budget.money)
+            modelContext.insert(money)
         }
     }
 }

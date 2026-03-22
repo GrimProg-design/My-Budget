@@ -13,23 +13,25 @@ struct HomeView: View {
     
     @Query var savedPlans: [DayPlan]
     @Query var allFoods: [FoodItem]
+    @Query private var myBudget: [MoneyItem]
     
     //    @State var foodThisWeek: [[FoodItem]] = Array(repeating: [], count: 7)
     @State private var currentDay = ""
     @State private var choosenDay = ""
-    @State var money = 160.0
+    @EnvironmentObject var budget: Budget
     
     var body: some View {
         VStack {
             
             //            MARK: окно с деньгами
             HStack {
-                Text(String(money))
-                    .font(.largeTitle)
-                    .foregroundStyle(.white)
-                Text("per day")
-                    .foregroundStyle(.gray)
-                
+                ForEach(myBudget) {bgt in
+                    Text(String(bgt.money))
+                        .font(.largeTitle)
+                        .foregroundStyle(.white)
+                    Text("per day")
+                        .foregroundStyle(.gray)
+                }
             }
             .padding(60)
             
@@ -110,7 +112,7 @@ struct HomeView: View {
         try? modelContext.save()
         
         for day in Weekdays.allCases {
-            var currentDayBudget = Int(money)
+            var currentDayBudget = Int(budget.money)
             var foodsForDay: [FoodItem] = []
             let shuffledFoods = allFoods.shuffled()
             

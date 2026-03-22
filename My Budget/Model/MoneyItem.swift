@@ -6,3 +6,13 @@
 //
 
 import Foundation
+import SwiftData
+
+@Model
+class MoneyItem {
+    var money: Int
+    
+    init(money: Int) {
+        self.money = money
+    }
+}
