@@ -41,12 +41,12 @@ struct FoodTaleView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text(food.name)
                         .font(.system(size: 14, weight: .bold))
-                        .foregroundColor(.primary)
+                        .foregroundColor(.black)
                         .lineLimit(1)
                     
                     Text("\(food.price) ₽")
                         .font(.system(size: 12))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.gray)
                 }
                 .padding(10)
             }

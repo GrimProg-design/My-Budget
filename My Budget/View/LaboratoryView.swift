@@ -16,7 +16,7 @@ struct LaboratoryView: View {
     
     var body: some View {
         Form {
-            Section {
+            Section("Бюджет") {
                 TextField("Введите сумму", text: Binding(
                     get: { String(budget.money) },
                     set: { newValue in
@@ -32,6 +32,10 @@ struct LaboratoryView: View {
                     .foregroundStyle(.green)
                     Spacer()
                 }
+            }
+            
+            Section("Умный калькулятор по расчету бюджета") {
+                Text("В разработке")
             }
             
             Section {
