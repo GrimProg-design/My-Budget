@@ -14,6 +14,10 @@ struct LaboratoryView: View {
     @EnvironmentObject var budget: Budget
     @Query var moneyItem: [MoneyItem]
     
+//    Сумма для расчета затрат на месяц
+    @State private var calcSum = ""
+    @State private var perMounth = ""
+    
     var body: some View {
         Form {
             Section("Бюджет") {
@@ -35,7 +39,12 @@ struct LaboratoryView: View {
             }
             
             Section("Умный калькулятор по расчету бюджета") {
-                Text("В разработке")
+                TextField("Введите месячный доход", text: $calcSum)
+                Button("Расчитать") {
+                    let calculator = BudgetCalculator(budget: calcSum)
+                    perMounth = calculator.calculate()
+                }
+                Text(perMounth)
             }
             
             Section {

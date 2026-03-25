@@ -80,6 +80,7 @@ struct HomeView: View {
                 } else {
                     VStack {
                         Text("План еще не создан")
+                            .foregroundStyle(.gray)
                         Button("Рассчитать меню на неделю") {
                             generateWeeklyPlan()
                         }
