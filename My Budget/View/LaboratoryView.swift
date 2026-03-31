@@ -42,6 +42,7 @@ struct LaboratoryView: View {
             
             Section("Умный калькулятор по расчету бюджета") {
                 TextField("Введите месячный доход", text: $calcSum)
+                    .keyboardType(.numberPad)
                 Button("Расчитать") {
                     let calculator = BudgetCalculator(budget: calcSum)
                     perMounth = calculator.calculate()
