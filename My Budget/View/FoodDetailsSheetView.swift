@@ -87,6 +87,7 @@ struct FoodDetailsSheetView: View {
             }
             .padding(30)
         }
+        .background(.white)
     }
 }
 

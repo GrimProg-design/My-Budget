@@ -20,6 +20,7 @@ struct HomeView: View {
     @State private var choosenDay = ""
     @EnvironmentObject var budget: Budget
     
+    
     var body: some View {
         VStack {
             
@@ -32,6 +33,17 @@ struct HomeView: View {
                     Text("per day")
                         .foregroundStyle(.gray)
                 }
+                
+                //                Сори будущий я, но это жесточайший костыль, потому что нынешний я не правильно сделал функцию и теперь мне лень ее переделывать, но работает и ладно ведь так же?? (((
+                Button {
+                    generateWeeklyPlan()
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                        .foregroundStyle(.black)
+                }
+                .frame(width: 40, height: 40)
+                .background(.gray.opacity(0.3))
+                .cornerRadius(50)
             }
             .padding(60)
             
@@ -165,7 +177,7 @@ enum Weekdays: String, CaseIterable {
     var daysInWeek: String {
         switch self {
         case .monday:
-        "Понедельник"
+            "Понедельник"
         case .tuesday:
             "Вторник"
         case .wednesday:

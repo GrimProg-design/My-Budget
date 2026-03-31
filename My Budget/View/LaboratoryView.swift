@@ -43,6 +43,9 @@ struct LaboratoryView: View {
                 Button("Расчитать") {
                     let calculator = BudgetCalculator(budget: calcSum)
                     perMounth = calculator.calculate()
+                    budget.money = Int(perMounth) ?? 0
+//                    Нужно чтобы автоматически сохранять бюджет
+                    saveBudget()
                 }
                 Text(perMounth)
             }
