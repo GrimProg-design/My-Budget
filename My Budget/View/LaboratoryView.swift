@@ -18,6 +18,8 @@ struct LaboratoryView: View {
     @State private var calcSum = ""
     @State private var perMounth = ""
     
+    @State private var showResult = false
+    
     var body: some View {
         Form {
             Section("Бюджет") {
@@ -46,8 +48,11 @@ struct LaboratoryView: View {
                     budget.money = Int(perMounth) ?? 0
 //                    Нужно чтобы автоматически сохранять бюджет
                     saveBudget()
+                    showResult = true
                 }
-                Text(perMounth)
+                if showResult {
+                    Text(perMounth)
+                }
             }
             
             Section {
